@@ -1,5 +1,6 @@
 # general configuration
 url: https://michelllepan.github.io
+unsec_url: http://michelllepan.github.io
 baseurl: ''
 
 # compass configuration
