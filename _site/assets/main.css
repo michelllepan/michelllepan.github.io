@@ -138,3 +138,36 @@ footer {
   .wrapper {
     width: 560px;
     /*680px*/ } }
+/*** leaf ***/
+#leaf-wrapper {
+  align-self: flex-start;
+  height: 80px;
+  width: 80px;
+  animation: sway-small 8s ease-in-out infinite;
+  transform-origin: 50% 100% 0; }
+
+.leaf {
+  position: absolute; }
+
+#right-leaf {
+  animation: sway-big 8s ease-in-out infinite 0s;
+  transform-origin: 48% 40% 0; }
+
+#left-leaf {
+  animation: sway-big 8s ease-in-out infinite 2s;
+  transform-origin: 48% 40% 0; }
+
+@keyframes sway-small {
+  0%, 100% {
+    transform: rotate(0deg); }
+  25% {
+    transform: rotate(-1deg); }
+  70% {
+    transform: rotate(3deg); } }
+@keyframes sway-big {
+  0%, 100% {
+    transform: rotate(0deg); }
+  25% {
+    transform: rotate(-6deg); }
+  70% {
+    transform: rotate(6deg); } }
