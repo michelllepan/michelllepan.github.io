@@ -30,6 +30,34 @@ a:active {
 a:hover {
   text-decoration: underline; }
 
+b {
+  font-weight: 600; }
+
+.concert {
+  margin: 8px 0px 0px 0px; }
+
+.concert-subtitle {
+  margin: 0px 0px 8px 0px;
+  font-family: proxima-nova;
+  font-style: italic;
+  overflow: hidden; }
+
+.concert-date {
+  font-family: courier, monospace;
+  font-weight: 800; }
+
+.concert-year {
+  margin: 15px 0px 5px 0px; }
+
+.home {
+  color: #578a2c;
+  opacity: 0.6; }
+
+#home:hover {
+  color: #578a2c;
+  opacity: 0.8;
+  text-decoration: none; }
+
 /*** main content list ***/
 .main-list-item {
   font-weight: bold;
