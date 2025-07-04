@@ -215,7 +215,7 @@ footer {
 	height: 80px;
 	width: 80px;
 
-	animation: sway-small 8s ease-in-out infinite;
+	animation: sway-small 6s ease-in-out infinite;
     transform-origin: 50% 100% 0;
 }
 
@@ -224,12 +224,12 @@ footer {
 }
 
 #right-leaf {
-	animation: sway-big 8s ease-in-out infinite 0s;
+	animation: sway-big 6s ease-in-out infinite 0s;
     transform-origin: 48% 40% 0;
 }
 
 #left-leaf {
-	animation: sway-big 8s ease-in-out infinite 2s;
+	animation: sway-big 6s ease-in-out infinite 2s;
     transform-origin: 48% 40% 0;
 }
 
