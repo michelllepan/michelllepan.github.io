@@ -1,0 +1,10 @@
+<div class="snippet-wrapper">
+    <div class="snippet-header">
+        <p class="snippet-title">{{ post.title }}</p>
+        <p class="snippet-date">{{ post.date | date: "%Y" }}</p>
+    </div>
+    <p class="snippet-description">{{ post.description }}</p>
+    <a href="{{ post.link | default: post.url }}" target="_blank">
+        <img class="snippet-image" src="{{ post.cover }}" alt="{{ post.title }}">
+    </a>
+</div>

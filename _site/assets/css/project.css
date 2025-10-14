@@ -1,0 +1,51 @@
+@import url("https://fonts.googleapis.com/css2?family=Noto+Serif:ital,wght@0,100..900;1,100..900&display=swap");
+body {
+  font-family: helvetica, sans-serif;
+  line-height: 1.2;
+}
+
+p {
+  margin-top: 0px;
+}
+
+.site-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  width: 100%;
+}
+
+.site-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 75px;
+  width: 1200px;
+  margin-top: 100px;
+  margin-bottom: 100px;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  align-items: center;
+  gap: 20px;
+}
+
+.michelle-pan {
+  width: 100px;
+  margin-top: -10px;
+}
+
+.image-wrapper {
+  margin-top: 20px;
+}
+
+.full-width-image {
+  width: 100%;
+  max-width: 800px;
+}
+
+/*# sourceMappingURL=project.css.map */

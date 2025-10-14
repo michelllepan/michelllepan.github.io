@@ -1,0 +1,195 @@
+@import url("https://fonts.googleapis.com/css2?family=Noto+Serif:ital,wght@0,100..900;1,100..900&display=swap");
+body {
+  font-family: helvetica, sans-serif;
+  line-height: 1.2;
+}
+
+p {
+  margin-top: 0px;
+}
+
+.site-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  width: 100%;
+}
+
+.site-content {
+  display: flex;
+  gap: 75px;
+  width: 775px;
+  margin-top: 200px;
+  margin-bottom: 100px;
+}
+
+.site-content > div:first-child {
+  flex: 0 0 auto;
+}
+
+.site-content > div:last-child {
+  flex: 1 1 0%;
+}
+
+.michelle-pan {
+  width: 120px;
+  margin-top: -10px;
+}
+
+.sidebar-link-wrapper {
+  margin-top: 10px;
+}
+
+.sidebar-link {
+  text-decoration: none;
+  color: #999;
+}
+
+.sidebar-link:hover {
+  color: #000;
+}
+
+.experience-item {
+  margin-top: 5px;
+}
+
+.entity-link {
+  text-decoration: underline;
+  text-decoration-color: #ccc;
+  text-underline-offset: 2px;
+  color: #000;
+}
+
+.social-wrapper {
+  list-style: none;
+  margin-top: 30px;
+  padding: 0;
+}
+
+.social-link {
+  display: inline-block;
+  text-decoration: none;
+  color: #999;
+}
+
+.social-link:hover {
+  color: #000;
+}
+
+.experience {
+  margin-top: 5px;
+}
+
+.work-feed {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
+
+.snippet-wrapper {
+  margin-bottom: 30px;
+}
+
+.snippet-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.snippet-title {
+  font-weight: 600;
+  text-transform: uppercase;
+  margin: 0px 0px;
+}
+
+.snippet-date {
+  margin: 0px 0px;
+}
+
+.snippet-description {
+  font-style: italic;
+  margin-top: 3px;
+  margin-bottom: 7px;
+}
+
+.snippet-image {
+  width: 100%;
+  filter: grayscale(100%);
+  opacity: 0.9;
+}
+
+.snippet-image:hover {
+  filter: none;
+  opacity: 1.5;
+}
+
+.play {
+  font-family: "Noto Serif", serif;
+  font-style: italic;
+  font-size: 28px;
+  color: #bbb;
+  display: inline-block;
+  margin-bottom: 15px;
+  text-decoration: none;
+}
+
+.play-word {
+  font-weight: 800;
+}
+
+.blue-hover:hover {
+  color: #2584ac;
+  text-decoration-color: #2584ac;
+}
+
+.pink-hover:hover {
+  color: #b32076;
+  text-decoration-color: #b32076;
+}
+
+.yellow-hover:hover {
+  color: #dca40c;
+  text-decoration-color: #dca40c;
+}
+
+.purple-hover:hover {
+  color: #7e1aad;
+  text-decoration-color: #7e1aad;
+}
+
+.green-hover:hover {
+  color: #458a0c;
+  text-decoration-color: #458a0c;
+}
+
+.blue-highlight:hover {
+  text-decoration-color: rgba(37, 132, 172, 0.2);
+  background-color: rgba(37, 132, 172, 0.2);
+}
+
+.pink-highlight:hover {
+  text-decoration-color: rgba(179, 32, 118, 0.2);
+  background-color: rgba(179, 32, 118, 0.2);
+}
+
+.yellow-highlight:hover {
+  text-decoration-color: rgba(220, 164, 12, 0.2);
+  background-color: rgba(220, 164, 12, 0.2);
+}
+
+.purple-highlight:hover {
+  text-decoration-color: rgba(126, 26, 173, 0.2);
+  background-color: rgba(126, 26, 173, 0.2);
+}
+
+.green-highlight:hover {
+  text-decoration-color: rgba(69, 138, 12, 0.2);
+  background-color: rgba(69, 138, 12, 0.2);
+}
+
+.snippet-image:not(:hover), .sidebar-link:not(:hover), .social-link:not(:hover), .entity-link:not(:hover), .play:not(:hover) {
+  transition: filter 2s, opacity 2s, color 2s, text-decoration 2s, text-decoration-color 2s, background-color 2s;
+}
+
+/*# sourceMappingURL=main.css.map */

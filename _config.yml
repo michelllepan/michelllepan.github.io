@@ -1,0 +1,6 @@
+url: "https://michelle.computer"
+title: "michelle pan"
+collections:
+  posts:
+    output: true
+    permalink: /:title
