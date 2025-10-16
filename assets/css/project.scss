@@ -44,6 +44,11 @@ p {
     gap: 20px;
 }
 
+.location {
+    text-align: center;
+    margin-top: 20px;
+}
+
 .iframe-container {
     position: relative;
     padding-bottom: 56.25%;
@@ -52,7 +57,7 @@ p {
 
 .link {
     text-decoration: underline;
-    text-decoration-color: #a5a5a5;
+    text-decoration-color: #b9b9b9;
     text-underline-offset: 2px;
     color: #000;
 }
@@ -84,24 +89,15 @@ p {
 //     flex: 1 1 0;
 // }
 
-.image-wrapper {
+.image-row {
     display: flex;
     flex-direction: row;
     margin-top: 20px;
     gap: 20px;
-    align-items: stretch;
-    width: 100%;
-    max-width: 100%;
-    box-sizing: border-box;
 }
 
 .image-wrapper img {
     width: 100%;
-    max-width: 100%;
     height: auto;
-    aspect-ratio: 4/3;
-    object-fit: cover;
-    flex: 1 1 0;
-    display: block;
-    min-width: 0;
+    vertical-align: middle;
 }
