@@ -5,7 +5,7 @@ body {
 }
 
 p {
-  margin-top: 0px;
+  margin-top: 5px;
 }
 
 .site-wrapper {
@@ -26,6 +26,12 @@ p {
   margin-bottom: 100px;
 }
 
+.project-content {
+  display: flex;
+  flex-direction: column;
+  max-width: 840px;
+}
+
 .header {
   display: flex;
   justify-content: space-between;
@@ -34,18 +40,50 @@ p {
   gap: 20px;
 }
 
-.michelle-pan {
-  width: 100px;
-  margin-top: -10px;
-}
-
-.image-wrapper {
+.iframe-container {
+  position: relative;
+  padding-bottom: 56.25%;
   margin-top: 20px;
 }
 
-.full-width-image {
+.link {
+  text-decoration: underline;
+  text-decoration-color: #a5a5a5;
+  text-underline-offset: 2px;
+  color: #000;
+}
+
+.link:hover {
+  text-decoration-color: #000;
+}
+
+.caption {
+  font-style: italic;
+  margin-top: 10px;
+  font-size: 14px;
+  color: #666;
+}
+
+.image-wrapper {
+  display: flex;
+  flex-direction: row;
+  margin-top: 20px;
+  gap: 20px;
+  align-items: stretch;
   width: 100%;
-  max-width: 800px;
+  max-width: 100%;
+  box-sizing: border-box;
+}
+
+.image-wrapper img {
+  width: 100%;
+  max-width: 100%;
+  height: auto;
+  aspect-ratio: 4/3;
+  object-fit: cover;
+  flex: 1 1 0;
+  display: block;
+  min-width: 0;
 }
 
 /*# sourceMappingURL=project.css.map */
