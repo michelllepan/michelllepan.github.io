@@ -4,3 +4,103 @@ title: "magic camera"
 cover: /assets/images/magic/cover.png
 description: An experiment in creating an augmented photographic experience.
 ---
+<div class="project-content">
+    <div class="header">
+        <h2>MAGIC CAMERA</h2>
+        <h2>2024</h2>
+    </div>
+
+    <p>
+        In a world where technology is often being used to replace human labor in <i>existing</i> tasks, how can we leverage our tools to create <i>new</i> experiences that would not otherwise be possible? This project reimagines the nature of photography; while a traditional camera simply captures a snapshot of what the eye sees, we envision a tool that instead transforms the perceived world.
+    </p>
+
+    <div class="image-row">
+        <div class="image-wrapper" style="flex: 1.33333333">
+            <img src="/assets/images/magic/camera-1.png">
+        </div>
+        <div class="image-wrapper" style="flex: 0.75012201">
+            <img src="/assets/images/magic/camera-2.png">
+        </div>
+    </div>
+    <br/>
+
+    <p>
+        Our camera uses generative image models to create alternate realities from the photos it takes. Images are captured with a Raspberry Pi camera module, then processed through inference with cloud-hosted models.
+
+    </p>
+
+    <p>
+        The tangible nature of the camera is a departure from our typical pattern of interactions with machine learning models behind a screen and keyboard. When users take the camera out into the world, they can iteratively experiment with models in a rapid feedback loop and co-create with the technology in an intuitive, conversation-like interaction.
+    </p>
+
+    <p>
+        We found that users adapted their approach to taking photos as they experimented with the camera. Rather than hunting for visually striking scenes, they began to think in terms of underlying patterns and structures, seeking out subjects for their potential for transformation.
+    </p>
+
+
+    <div class="image-row">
+        <div class="image-wrapper" style="flex: 1">
+            <img src="/assets/images/magic/20240404-193022_before.png">
+        </div>
+        <div class="image-wrapper" style="flex: 1">
+            <img src="/assets/images/magic/20240407-224231_before.png">
+        </div>
+        <div class="image-wrapper" style="flex: 1">
+            <img src="/assets/images/magic/20240419-203229_before.png">
+        </div>
+    </div>
+
+    <div class="image-row">
+        <div class="image-wrapper" style="flex: 1">
+            <img src="/assets/images/magic/20240404-193022_after.png">
+        </div>
+        <div class="image-wrapper" style="flex: 1">
+            <img src="/assets/images/magic/20240407-224231_after.png">
+        </div>
+        <div class="image-wrapper" style="flex: 1">
+            <img src="/assets/images/magic/20240419-203229_after.png">
+        </div>
+    </div>
+    <p class="caption">
+        We use InstructPix2Pix, a conditional diffusion model for image editing from language instructions, to perform one-shot style transfer on photos. Shown above are Studio Ghibli (left) and watercolor (right) style.
+    </p>
+
+    <div class="image-row">
+        <div class="image-wrapper" style="flex: 1">
+            <img src="/assets/images/magic/20240427-181058_before.png">
+        </div>
+        <div class="image-wrapper" style="flex: 1">
+            <img src="/assets/images/magic/20240427-181734_before.png">
+        </div>
+        <div class="image-wrapper" style="flex: 1">
+            <img src="/assets/images/magic/20240428-155705_before.png">
+        </div>
+    </div>
+
+    <div class="image-row">
+        <div class="image-wrapper" style="flex: 1">
+            <img src="/assets/images/magic/20240427-181058_after.png">
+        </div>
+        <div class="image-wrapper" style="flex: 1">
+            <img src="/assets/images/magic/20240427-181734_after.png">
+        </div>
+        <div class="image-wrapper" style="flex: 1">
+            <img src="/assets/images/magic/20240428-155705_after.png">
+        </div>
+    </div>
+    <p class="caption">
+        We deconstruct an image to object-level spatial and semantic information, then reconstruct a new scene with the same arrangement of objects. We use Detic for open-vocabulary object detection, and GLIGEN for grounded generation.
+    </p>
+
+    
+    <p>
+        This project was a collaboration with Eshaan Moorjani, Annie Zhang, Arjun Banerjee, Dhruv Gautam, Erica Liu, Selena Zhao, and Sophie Xie.
+    </p>
+
+
+    <p class="location">
+        Launchpad<br/>
+        Berkeley, CA
+    </p>
+
+</div>

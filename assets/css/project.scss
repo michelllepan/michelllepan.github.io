@@ -12,6 +12,10 @@ p {
     margin-top: 5px;
 }
 
+b {
+    font-weight: 650;
+}
+
 .site-wrapper {
     display: flex;
     justify-content: center;
@@ -78,6 +82,12 @@ p {
     flex-direction: row;
     margin-top: 20px;
     gap: 20px;
+}
+
+.image-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .image-wrapper img {
