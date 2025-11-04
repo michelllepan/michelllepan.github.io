@@ -195,3 +195,31 @@ p {
 .snippet-image:not(:hover), .sidebar-link:not(:hover), .social-link:not(:hover), .entity-link:not(:hover), .play:not(:hover) {
     transition: filter 2.0s, opacity 2.0s, color 2.0s, text-decoration 2.0s, text-decoration-color 2.0s, background-color 2.0s;
 }
+
+.caption {
+    font-style: italic;
+    margin-top: 10px;
+    font-size: 14px;
+    color: #666;
+}
+
+.image-row {
+    display: flex;
+    flex-direction: row;
+    align-items: end;
+    margin-top: 20px;
+    gap: 20px;
+}
+
+.image-wrapper {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.image-wrapper img {
+    width: 100%;
+    height: auto;
+    vertical-align: middle;
+}

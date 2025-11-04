@@ -192,4 +192,32 @@ p {
   transition: filter 2s, opacity 2s, color 2s, text-decoration 2s, text-decoration-color 2s, background-color 2s;
 }
 
+.caption {
+  font-style: italic;
+  margin-top: 10px;
+  font-size: 14px;
+  color: #666;
+}
+
+.image-row {
+  display: flex;
+  flex-direction: row;
+  align-items: end;
+  margin-top: 20px;
+  gap: 20px;
+}
+
+.image-wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.image-wrapper img {
+  width: 100%;
+  height: auto;
+  vertical-align: middle;
+}
+
 /*# sourceMappingURL=main.css.map */
