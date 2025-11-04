@@ -59,5 +59,79 @@
         </div>
     </div>
     
+    <script>
+        (function() {
+            let mouseX = 0;
+            let mouseY = 0;
+            let hoveredImage = null;
+            const snippetImages = document.querySelectorAll('.snippet-image');
+            
+            // Track mouse position
+            document.addEventListener('mousemove', function(e) {
+                mouseX = e.clientX;
+                mouseY = e.clientY;
+                updateHoverState();
+            });
+            
+            // Update hover state during scroll
+            let scrollTimeout;
+            window.addEventListener('scroll', function() {
+                clearTimeout(scrollTimeout);
+                updateHoverState();
+                // Also check after scroll ends
+                scrollTimeout = setTimeout(updateHoverState, 50);
+            }, { passive: true });
+            
+            function updateHoverState() {
+                // Find element at mouse position
+                const elementAtPoint = document.elementFromPoint(mouseX, mouseY);
+                const imageUnderMouse = elementAtPoint ? elementAtPoint.closest('.snippet-image') : null;
+                
+                // Remove hover from previously hovered image
+                if (hoveredImage && hoveredImage !== imageUnderMouse) {
+                    hoveredImage.classList.remove('hover');
+                    hoveredImage = null;
+                }
+                
+                // Add hover to current image if it exists
+                if (imageUnderMouse) {
+                    imageUnderMouse.classList.add('hover');
+                    hoveredImage = imageUnderMouse;
+                }
+            }
+            
+            // Use Intersection Observer to optimize - only check images that are in viewport
+            if ('IntersectionObserver' in window) {
+                const observer = new IntersectionObserver(function(entries) {
+                    entries.forEach(function(entry) {
+                        // If image leaves viewport, remove hover state
+                        if (!entry.isIntersecting && entry.target.classList.contains('hover')) {
+                            entry.target.classList.remove('hover');
+                            if (hoveredImage === entry.target) {
+                                hoveredImage = null;
+                            }
+                        }
+                    });
+                }, {
+                    root: null,
+                    rootMargin: '0px',
+                    threshold: 0
+                });
+                
+                // Observe all snippet images
+                snippetImages.forEach(function(image) {
+                    observer.observe(image);
+                });
+            }
+            
+            // Clean up hover state on mouse leave
+            document.addEventListener('mouseleave', function() {
+                if (hoveredImage) {
+                    hoveredImage.classList.remove('hover');
+                    hoveredImage = null;
+                }
+            });
+        })();
+    </script>
   </body>
 </html>

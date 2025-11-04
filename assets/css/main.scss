@@ -121,11 +121,14 @@ p {
     width: 100%;
     filter: grayscale(100%);
     opacity: 0.9;
+    transition: filter 2.0s, opacity 2.0s;
 }
 
-.snippet-image:hover {
+.snippet-image:hover,
+.snippet-image.hover {
     filter: none;
     opacity: 1.5;
+    transition: filter 0s, opacity 0s;
 }
 
 .play {
@@ -192,7 +195,7 @@ p {
     background-color: rgba(69, 138, 12, 0.2);
 }
 
-.snippet-image:not(:hover), .sidebar-link:not(:hover), .social-link:not(:hover), .entity-link:not(:hover), .play:not(:hover) {
+.sidebar-link:not(:hover), .social-link:not(:hover), .entity-link:not(:hover), .play:not(:hover) {
     transition: filter 2.0s, opacity 2.0s, color 2.0s, text-decoration 2.0s, text-decoration-color 2.0s, background-color 2.0s;
 }
 
