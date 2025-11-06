@@ -200,29 +200,37 @@ p {
 }
 
 .caption {
-    font-style: italic;
     margin-top: 10px;
-    font-size: 14px;
+    font-size: 12px;
     color: #666;
+    text-align: center;
 }
 
-.image-row {
+.tower-row {
     display: flex;
     flex-direction: row;
+    justify-content: center;
     align-items: end;
+    flex-wrap: wrap;
+    row-gap: 10px;
     margin-top: 20px;
     gap: 20px;
+    width: 100%;
+    max-width: 100%;
 }
 
-.image-wrapper {
+.tower-wrapper {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    flex-wrap: wrap;
+    flex: 0 1 auto;
+    min-width: 0;
+    max-width: 100%;
 }
 
-.image-wrapper img {
-    width: 100%;
-    height: auto;
+.tower-wrapper img {
+    max-height: 200px;
     vertical-align: middle;
 }

@@ -165,6 +165,46 @@
                 }
             });
         })();
+        
+        // Handle audio playback on tower-wrapper hover
+        (function() {
+            const towerWrappers = document.querySelectorAll('.tower-wrapper');
+            let currentAudio = null;
+            let currentWrapper = null;
+            
+            towerWrappers.forEach(function(wrapper) {
+                const audioSrc = wrapper.getAttribute('data-audio');
+                if (!audioSrc) return;
+                
+                const audio = new Audio(audioSrc);
+                audio.loop = false;
+                
+                wrapper.addEventListener('mouseenter', function() {
+                    // Stop any currently playing audio
+                    if (currentAudio && currentAudio !== audio) {
+                        currentAudio.pause();
+                        currentAudio.currentTime = 0;
+                    }
+                    
+                    // Play this audio
+                    currentAudio = audio;
+                    currentWrapper = wrapper;
+                    audio.play().catch(function(error) {
+                        // Handle autoplay restrictions
+                        console.log('Audio play failed:', error);
+                    });
+                });
+                
+                wrapper.addEventListener('mouseleave', function() {
+                    if (currentAudio === audio) {
+                        audio.pause();
+                        audio.currentTime = 0;
+                        currentAudio = null;
+                        currentWrapper = null;
+                    }
+                });
+            });
+        })();
     </script>
   </body>
 </html>
