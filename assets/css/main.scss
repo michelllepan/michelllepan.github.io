@@ -24,8 +24,7 @@ p {
     display: flex;
     gap: 75px;
     width: 775px;
-    margin-top: 200px;
-    margin-bottom: 100px;
+    margin: 200px 40px 100px 40px;
 }
 
 .site-content > div:first-child {
@@ -212,7 +211,7 @@ p {
     justify-content: center;
     align-items: end;
     flex-wrap: wrap;
-    row-gap: 10px;
+    row-gap: 0px;
     margin-top: 20px;
     gap: 20px;
     width: 100%;
@@ -233,4 +232,36 @@ p {
 .tower-wrapper img {
     max-height: 200px;
     vertical-align: middle;
+}
+
+@media (max-width: 700px) {
+    .site-content {
+        flex-direction: column;
+        width: 100%;
+        gap: 30px;
+        margin: 70px 40px 100px 40px;
+    }
+
+    .sidebar {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: flex-start;
+        margin-bottom: 12px;
+    }
+
+    .sidebar-link-wrapper {
+        text-align: right;
+        margin-top: 0px;
+    }
+
+    .tower-row {
+        align-items: center;
+        gap: 15px;
+        margin-top: 10px;
+    }
+
+    .tower-wrapper img {
+        max-height: 200px;
+    }
 }
