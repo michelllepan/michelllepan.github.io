@@ -35,71 +35,44 @@
     </p>
 
     <div class="tower-row">
-        <div class="tower-wrapper">
+        <div class="tower-wrapper" data-audio="/assets/sounds/2.0bell.mp3">
             <img src="/assets/images/towers/berkeley.svg">
             <p class="caption">Berkeley<br/>CA</p>
         </div>
-        <div class="tower-wrapper">
+        <div class="tower-wrapper" data-audio="/assets/sounds/2.2bell.mp3">
             <img src="/assets/images/towers/stanford.svg">
             <p class="caption">Stanford<br/>CA</p>
         </div>
-        <div class="tower-wrapper">
+        <div class="tower-wrapper" data-audio="/assets/sounds/2.4bell.mp3">
             <img src="/assets/images/towers/athens.svg">
             <p class="caption">Athens<br/>WV</p>
         </div>
-        <div class="tower-wrapper">
+        <div class="tower-wrapper" data-audio="/assets/sounds/2.7bell.mp3">
             <img src="/assets/images/towers/chicago.svg">
             <p class="caption">Chicago<br/>IL</p>
         </div>
-        <div class="tower-wrapper">
+        <div class="tower-wrapper" data-audio="/assets/sounds/2.9bell.mp3">
             <img src="/assets/images/towers/santa-barbara.svg">
             <p class="caption">Santa Barbara<br/>CA</p>
         </div>
-        <div class="tower-wrapper">
+        <div class="tower-wrapper" data-audio="/assets/sounds/3.0bell.mp3">
             <img src="/assets/images/towers/san-jose.svg">
             <p class="caption">San Jose<br/>CA</p>
         </div>
 
-        <div class="tower-wrapper">
+        <div class="tower-wrapper" data-audio="/assets/sounds/3.2bell.mp3">
             <img src="/assets/images/towers/vienna.svg">
             <p class="caption">Vienna<br/>Austria</p>
         </div>
-        <div class="tower-wrapper">
+        <div class="tower-wrapper" data-audio="/assets/sounds/3.4bell.mp3">
             <img src="/assets/images/towers/toulouse.svg">
             <p class="caption">Toulouse<br/>France</p>
         </div>
-        <div class="tower-wrapper">
+        <div class="tower-wrapper" data-audio="/assets/sounds/3.7bell1.mp3">
             <img src="/assets/images/towers/villefranche.svg">
             <p class="caption">Villefranche-de-Rouergue<br/>France</p>
         </div>
-        
     </div>
-    <!-- <div class="tower-row">
-        <div class="tower-wrapper">
-            <img src="/assets/images/towers/vienna.svg">
-            <p class="caption">Vienna<br/>Austria</p>
-        </div>
-        <div class="tower-wrapper">
-            <img src="/assets/images/towers/toulouse.svg">
-            <p class="caption">Toulouse<br/>France</p>
-        </div>
-        <div class="tower-wrapper">
-            <img src="/assets/images/towers/villefranche.svg">
-            <p class="caption">Villefranche de Rouergue<br/>France</p>
-        </div>
-    </div> -->
-
-    <!-- <ul>
-        <li>Sather Tower, Berkeley, California</li>
-        <li>Hoover Tower, Stanford, California</li>
-        <li>Storke Tower, Santa Barbara, California</li>
-        <li>Trinity Cathedral, San Jose, California</li>
-        <li>Rockefeller Chapel, Chicago, Illinois</li>
-        <li>Marsh Memorial Tower, Athens, West Virginia</li>
-        <li>Stift Heiligenkreuz, Vienna, Austria</li>
-        <li>Collégiale Notre Dame, Villefranche de Rouergue, France</li>
-        <li>Basilique Saint-Sernin, Toulouse, France</li>
-    </ul> -->
 
     <br/><br/>
 
@@ -206,38 +179,106 @@
         // Handle audio playback on tower-wrapper hover
         (function() {
             const towerWrappers = document.querySelectorAll('.tower-wrapper');
-            let currentAudio = null;
-            let currentWrapper = null;
+            let audioUnlocked = false;
+            const audioMap = new Map();
             
+            // Preload all audio files
             towerWrappers.forEach(function(wrapper) {
                 const audioSrc = wrapper.getAttribute('data-audio');
-                if (!audioSrc) return;
+                if (!audioSrc) {
+                    console.warn('No data-audio attribute found on tower-wrapper');
+                    return;
+                }
                 
-                const audio = new Audio(audioSrc);
+                const audio = new Audio();
+                audio.src = audioSrc;
                 audio.loop = false;
+                audio.preload = 'auto';
+                audio.volume = 0.2; // Set volume to 20%
                 
-                wrapper.addEventListener('mouseenter', function() {
-                    // Stop any currently playing audio
-                    if (currentAudio && currentAudio !== audio) {
-                        currentAudio.pause();
-                        currentAudio.currentTime = 0;
+                // Add error handling
+                audio.addEventListener('error', function(e) {
+                    console.error('Audio loading error for', audioSrc, 'Error code:', audio.error ? audio.error.code : 'unknown', e);
+                    if (audio.error) {
+                        console.error('Audio error details:', {
+                            code: audio.error.code,
+                            message: audio.error.message
+                        });
                     }
-                    
-                    // Play this audio
-                    currentAudio = audio;
-                    currentWrapper = wrapper;
-                    audio.play().catch(function(error) {
-                        // Handle autoplay restrictions
-                        console.log('Audio play failed:', error);
-                    });
                 });
                 
-                wrapper.addEventListener('mouseleave', function() {
-                    if (currentAudio === audio) {
-                        audio.pause();
-                        audio.currentTime = 0;
-                        currentAudio = null;
-                        currentWrapper = null;
+                // Try to load the audio
+                audio.load();
+                
+                audioMap.set(wrapper, audio);
+            });
+            
+            // Unlock audio on first user interaction
+            function unlockAudio() {
+                if (audioUnlocked) return;
+                audioUnlocked = true;
+                
+                // Try to play and immediately pause an audio to unlock
+                // This ensures the browser allows audio playback
+                const firstAudio = audioMap.values().next().value;
+                if (firstAudio) {
+                    firstAudio.volume = 0; // Play silently to unlock
+                    firstAudio.play().then(function() {
+                        firstAudio.pause();
+                        firstAudio.currentTime = 0;
+                        firstAudio.volume = 1.0; // Restore volume
+                    }).catch(function(error) {
+                        console.error('Failed to unlock audio:', error);
+                    });
+                }
+            }
+            
+            // Listen for user interactions to unlock audio
+            ['click', 'touchstart', 'keydown'].forEach(function(eventType) {
+                document.addEventListener(eventType, unlockAudio, { once: true, passive: true });
+            });
+            
+            // Set up click handlers - sounds will overlap and continue playing
+            towerWrappers.forEach(function(wrapper) {
+                const audio = audioMap.get(wrapper);
+                if (!audio) return;
+                
+                wrapper.addEventListener('click', function() {
+                    if (!audioUnlocked) {
+                        // Try to unlock on click if not already unlocked
+                        unlockAudio();
+                        // Wait a bit for unlock to complete
+                        setTimeout(function() {
+                            tryPlayAudio();
+                        }, 100);
+                    } else {
+                        tryPlayAudio();
+                    }
+                    
+                    function tryPlayAudio() {
+                        // Create a new audio instance for each play so sounds can overlap
+                        const audioSrc = wrapper.getAttribute('data-audio');
+                        const newAudio = new Audio(audioSrc);
+                        newAudio.volume = 0.2; // Play at 20% volume
+                        newAudio.preload = 'auto';
+                        
+                        // Play this audio - it will continue until it finishes
+                        // The audio will load and play independently, allowing overlaps
+                        newAudio.play().then(function() {
+                            console.log('Audio playing:', audioSrc);
+                        }).catch(function(error) {
+                            console.error('Audio play failed:', error, 'for', audioSrc);
+                            // If play fails, try unlocking again or wait for load
+                            if (!audioUnlocked) {
+                                unlockAudio();
+                            }
+                            // If it's a loading issue, wait for the audio to be ready
+                            newAudio.addEventListener('canplay', function() {
+                                newAudio.play().catch(function(err) {
+                                    console.error('Retry play failed:', err);
+                                });
+                            }, { once: true });
+                        });
                     }
                 });
             });
