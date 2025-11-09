@@ -244,7 +244,7 @@ p {
     flex-direction: column;
     width: 100%;
     gap: 30px;
-    margin: 70px 40px 100px 40px;
+    margin: 70px 35px 100px 35px;
   }
   .sidebar {
     display: flex;
