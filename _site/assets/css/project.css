@@ -91,4 +91,13 @@ b {
   vertical-align: middle;
 }
 
+@media (max-width: 700px) {
+  .site-content {
+    flex-direction: column;
+    width: 100%;
+    gap: 30px;
+    margin: 40px 40px 100px 40px;
+  }
+}
+
 /*# sourceMappingURL=project.css.map */
