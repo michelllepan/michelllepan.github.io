@@ -98,6 +98,10 @@ b {
     gap: 30px;
     margin: 40px 40px 100px 40px;
   }
+  .image-row {
+    flex-direction: column;
+    gap: 20px;
+  }
 }
 
 /*# sourceMappingURL=project.css.map */

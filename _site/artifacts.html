@@ -107,10 +107,62 @@
             let mouseX = 0;
             let mouseY = 0;
             let hoveredImage = null;
+            let centeredImage = null;
             const snippetImages = document.querySelectorAll('.snippet-image');
             
-            // Track mouse position
+            // Check if we're on mobile (matching the CSS media query at 700px)
+            function isMobile() {
+                return window.innerWidth <= 700;
+            }
+            
+            // Check if an image is centered in the viewport
+            function checkCenteredImages() {
+                if (!isMobile()) {
+                    // On desktop, don't manage centered state
+                    return;
+                }
+                
+                const viewportHeight = window.innerHeight;
+                const viewportCenter = viewportHeight / 2;
+                const threshold = viewportHeight * 0.15; // 15% of viewport height tolerance
+                
+                let newCenteredImage = null;
+                let minDistance = Infinity;
+                
+                snippetImages.forEach(function(image) {
+                    const rect = image.getBoundingClientRect();
+                    const imageCenter = rect.top + (rect.height / 2);
+                    const distanceFromCenter = Math.abs(imageCenter - viewportCenter);
+                    
+                    // Check if image is in viewport and center is close to viewport center
+                    if (rect.top < viewportHeight && rect.bottom > 0 && distanceFromCenter < threshold) {
+                        if (distanceFromCenter < minDistance) {
+                            minDistance = distanceFromCenter;
+                            newCenteredImage = image;
+                        }
+                    }
+                });
+                
+                // Update centered image
+                if (centeredImage !== newCenteredImage) {
+                    // Remove hover from previously centered image (unless it's mouse-hovered)
+                    if (centeredImage && centeredImage !== hoveredImage) {
+                        centeredImage.classList.remove('hover');
+                    }
+                    // Add hover to newly centered image
+                    if (newCenteredImage) {
+                        newCenteredImage.classList.add('hover');
+                    }
+                    centeredImage = newCenteredImage;
+                }
+            }
+            
+            // Track mouse position (for desktop)
             document.addEventListener('mousemove', function(e) {
+                if (isMobile()) {
+                    // On mobile, don't track mouse for hover
+                    return;
+                }
                 mouseX = e.clientX;
                 mouseY = e.clientY;
                 updateHoverState();
@@ -118,14 +170,32 @@
             
             // Update hover state during scroll
             let scrollTimeout;
+            let rafId = null;
             window.addEventListener('scroll', function() {
                 clearTimeout(scrollTimeout);
-                updateHoverState();
-                // Also check after scroll ends
-                scrollTimeout = setTimeout(updateHoverState, 50);
+                
+                if (isMobile()) {
+                    // On mobile, use requestAnimationFrame for smooth centered image detection
+                    if (rafId === null) {
+                        rafId = requestAnimationFrame(function() {
+                            checkCenteredImages();
+                            rafId = null;
+                        });
+                    }
+                } else {
+                    // On desktop, update hover state based on mouse position
+                    updateHoverState();
+                    // Also check after scroll ends
+                    scrollTimeout = setTimeout(updateHoverState, 50);
+                }
             }, { passive: true });
             
             function updateHoverState() {
+                if (isMobile()) {
+                    // On mobile, hover is managed by centered images
+                    return;
+                }
+                
                 // Find element at mouse position
                 const elementAtPoint = document.elementFromPoint(mouseX, mouseY);
                 const imageUnderMouse = elementAtPoint ? elementAtPoint.closest('.snippet-image') : null;
@@ -147,11 +217,20 @@
             if ('IntersectionObserver' in window) {
                 const observer = new IntersectionObserver(function(entries) {
                     entries.forEach(function(entry) {
-                        // If image leaves viewport, remove hover state
-                        if (!entry.isIntersecting && entry.target.classList.contains('hover')) {
-                            entry.target.classList.remove('hover');
-                            if (hoveredImage === entry.target) {
-                                hoveredImage = null;
+                        // If image leaves viewport, clean up hover state
+                        if (!entry.isIntersecting) {
+                            if (isMobile()) {
+                                // On mobile, if this was the centered image, clear it
+                                if (entry.target === centeredImage) {
+                                    entry.target.classList.remove('hover');
+                                    centeredImage = null;
+                                }
+                            } else {
+                                // On desktop, if this was the hovered image, clear it
+                                if (entry.target === hoveredImage) {
+                                    entry.target.classList.remove('hover');
+                                    hoveredImage = null;
+                                }
                             }
                         }
                     });
@@ -167,13 +246,41 @@
                 });
             }
             
-            // Clean up hover state on mouse leave
+            // Clean up hover state on mouse leave (desktop only)
             document.addEventListener('mouseleave', function() {
-                if (hoveredImage) {
+                if (!isMobile() && hoveredImage) {
                     hoveredImage.classList.remove('hover');
                     hoveredImage = null;
                 }
             });
+            
+            // Handle window resize to switch between mobile/desktop modes
+            let resizeTimeout;
+            window.addEventListener('resize', function() {
+                clearTimeout(resizeTimeout);
+                resizeTimeout = setTimeout(function() {
+                    if (isMobile()) {
+                        // Switch to mobile mode - check centered images
+                        checkCenteredImages();
+                        // Clear mouse-based hover
+                        if (hoveredImage) {
+                            hoveredImage.classList.remove('hover');
+                            hoveredImage = null;
+                        }
+                    } else {
+                        // Switch to desktop mode - clear centered image hover
+                        if (centeredImage) {
+                            centeredImage.classList.remove('hover');
+                            centeredImage = null;
+                        }
+                    }
+                }, 100);
+            }, { passive: true });
+            
+            // Initial check for centered images on mobile
+            if (isMobile()) {
+                checkCenteredImages();
+            }
         })();
         
         // Handle audio playback on tower-wrapper hover
