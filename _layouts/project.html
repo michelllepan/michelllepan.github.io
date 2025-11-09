@@ -7,7 +7,9 @@
     <link rel="icon" type="image/svg+xml" href="{{ "/assets/images/mp.svg" | relative_url }}">
     <link rel="stylesheet" href="https://use.typekit.net/omz0idg.css">
     <link rel="stylesheet" href="{{ "/assets/css/project.css" | relative_url }}">
-    <script src="https://player.vimeo.com/api/player.js"></script>
+    {% unless page.vimeo == false %}
+    <script src="https://player.vimeo.com/api/player.js" defer></script>
+    {% endunless %}
     <!-- Google tag (gtag.js) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-7YN2LJ770T"></script>
     <script>

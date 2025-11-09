@@ -206,60 +206,29 @@
             }
         })();
         
-        // Handle audio playback on tower-wrapper hover
+        // Handle audio playback on tower-wrapper click
         (function() {
             const towerWrappers = document.querySelectorAll('.tower-wrapper');
             let audioUnlocked = false;
-            const audioMap = new Map();
-            
-            // Preload all audio files
-            towerWrappers.forEach(function(wrapper) {
-                const audioSrc = wrapper.getAttribute('data-audio');
-                if (!audioSrc) {
-                    console.warn('No data-audio attribute found on tower-wrapper');
-                    return;
-                }
-                
-                const audio = new Audio();
-                audio.src = audioSrc;
-                audio.loop = false;
-                audio.preload = 'auto';
-                audio.volume = 0.2; // Set volume to 20%
-                
-                // Add error handling
-                audio.addEventListener('error', function(e) {
-                    console.error('Audio loading error for', audioSrc, 'Error code:', audio.error ? audio.error.code : 'unknown', e);
-                    if (audio.error) {
-                        console.error('Audio error details:', {
-                            code: audio.error.code,
-                            message: audio.error.message
-                        });
-                    }
-                });
-                
-                // Try to load the audio
-                audio.load();
-                
-                audioMap.set(wrapper, audio);
-            });
             
             // Unlock audio on first user interaction
             function unlockAudio() {
                 if (audioUnlocked) return;
                 audioUnlocked = true;
                 
-                // Try to play and immediately pause an audio to unlock
-                // This ensures the browser allows audio playback
-                const firstAudio = audioMap.values().next().value;
-                if (firstAudio) {
-                    firstAudio.volume = 0; // Play silently to unlock
-                    firstAudio.play().then(function() {
-                        firstAudio.pause();
-                        firstAudio.currentTime = 0;
-                        firstAudio.volume = 1.0; // Restore volume
-                    }).catch(function(error) {
-                        console.error('Failed to unlock audio:', error);
-                    });
+                // Create a silent audio context to unlock audio on first interaction
+                // This is more efficient than loading an actual audio file
+                try {
+                    const audioContext = new (window.AudioContext || window.webkitAudioContext)();
+                    const oscillator = audioContext.createOscillator();
+                    const gainNode = audioContext.createGain();
+                    gainNode.gain.value = 0;
+                    oscillator.connect(gainNode);
+                    gainNode.connect(audioContext.destination);
+                    oscillator.start();
+                    oscillator.stop(audioContext.currentTime + 0.001);
+                } catch (e) {
+                    // Fallback: silently handle if AudioContext is not supported
                 }
             }
             
@@ -270,46 +239,41 @@
             
             // Set up click handlers - sounds will overlap and continue playing
             towerWrappers.forEach(function(wrapper) {
-                const audio = audioMap.get(wrapper);
-                if (!audio) return;
-                
                 wrapper.addEventListener('click', function() {
+                    const audioSrc = wrapper.getAttribute('data-audio');
+                    if (!audioSrc) return;
+                    
+                    // Unlock audio if not already unlocked
                     if (!audioUnlocked) {
-                        // Try to unlock on click if not already unlocked
                         unlockAudio();
-                        // Wait a bit for unlock to complete
-                        setTimeout(function() {
-                            tryPlayAudio();
-                        }, 100);
-                    } else {
-                        tryPlayAudio();
                     }
                     
-                    function tryPlayAudio() {
-                        // Create a new audio instance for each play so sounds can overlap
-                        const audioSrc = wrapper.getAttribute('data-audio');
-                        const newAudio = new Audio(audioSrc);
-                        newAudio.volume = 0.2; // Play at 20% volume
-                        newAudio.preload = 'auto';
-                        
-                        // Play this audio - it will continue until it finishes
-                        // The audio will load and play independently, allowing overlaps
-                        newAudio.play().then(function() {
-                            console.log('Audio playing:', audioSrc);
-                        }).catch(function(error) {
-                            console.error('Audio play failed:', error, 'for', audioSrc);
-                            // If play fails, try unlocking again or wait for load
-                            if (!audioUnlocked) {
-                                unlockAudio();
-                            }
-                            // If it's a loading issue, wait for the audio to be ready
-                            newAudio.addEventListener('canplay', function() {
-                                newAudio.play().catch(function(err) {
-                                    console.error('Retry play failed:', err);
-                                });
-                            }, { once: true });
-                        });
-                    }
+                    // Create a new audio instance for each play so sounds can overlap
+                    // Audio will load on-demand when play() is called
+                    const newAudio = new Audio();
+                    newAudio.src = audioSrc;
+                    newAudio.volume = 0.2; // Play at 20% volume
+                    
+                    // Add error handling
+                    newAudio.addEventListener('error', function(e) {
+                        console.error('Audio loading error for', audioSrc, e);
+                    });
+                    
+                    // Play this audio - it will continue until it finishes
+                    // The audio will load and play independently, allowing overlaps
+                    newAudio.play().then(function() {
+                        console.log('Audio playing:', audioSrc);
+                    }).catch(function(error) {
+                        console.error('Audio play failed:', error, 'for', audioSrc);
+                        // If it's a loading issue, wait for the audio to be ready
+                        newAudio.addEventListener('canplay', function() {
+                            newAudio.play().catch(function(err) {
+                                console.error('Retry play failed:', err);
+                            });
+                        }, { once: true });
+                        // Trigger load
+                        newAudio.load();
+                    });
                 });
             });
         })();
