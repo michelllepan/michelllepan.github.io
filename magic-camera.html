@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="utf-8">
+    <title>magic camera</title>
+    <link rel="icon" type="image/svg+xml" href="/assets/images/mp.svg">
+    <link rel="stylesheet" href="https://use.typekit.net/omz0idg.css">
+    <link rel="stylesheet" href="/assets/css/project.css">
+    
+    <script src="https://player.vimeo.com/api/player.js" defer></script>
+    
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-7YN2LJ770T"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+
+        gtag('config', 'G-7YN2LJ770T');
+    </script>
+  </head>
+  <body>
+    <div class="site-wrapper">
+        <div class="site-content">
+            <div class="project-content">
+    <div class="header">
+        <h2>MAGIC CAMERA</h2>
+        <h2>2024</h2>
+    </div>
+
+    <p>
+        In a world where technology is often being used to replace human labor in <i>existing</i> tasks, how can we leverage our tools to create <i>new</i> experiences that would not otherwise be possible? This project reimagines the nature of photography; while a traditional camera simply captures a snapshot of what the eye sees, we envision a tool that instead transforms the perceived world.
+    </p>
+
+    <div class="image-row">
+        <div class="image-wrapper" style="flex: 1.33333333">
+            <img src="/assets/images/magic/camera-1.jpg" loading="lazy">
+        </div>
+        <div class="image-wrapper" style="flex: 0.75012201">
+            <img src="/assets/images/magic/camera-2.jpg" loading="lazy">
+        </div>
+    </div>
+    <br/>
+
+    <p>
+        Our camera uses generative image models to create alternate realities from the photos it takes. Images are captured with a Raspberry Pi camera module, then processed through inference with cloud-hosted models.
+
+    </p>
+
+    <p>
+        The tangible nature of the camera is a departure from our typical pattern of interactions with machine learning models behind a screen and keyboard. When users take the camera out into the world, they can iteratively experiment with models in a rapid feedback loop and co-create with the technology in an intuitive, conversation-like interaction.
+    </p>
+
+    <p>
+        We found that users adapted their approach to taking photos as they experimented with the camera. Rather than hunting for visually striking scenes, they began to think in terms of underlying patterns and structures, seeking out subjects for their potential for transformation.
+    </p>
+
+
+    <div class="image-row">
+        <div class="image-wrapper" style="flex: 1">
+            <img src="/assets/images/magic/20240404-193022_before.png" loading="lazy">
+        </div>
+        <div class="image-wrapper" style="flex: 1">
+            <img src="/assets/images/magic/20240407-224231_before.png" loading="lazy">
+        </div>
+        <div class="image-wrapper" style="flex: 1">
+            <img src="/assets/images/magic/20240419-203229_before.jpg" loading="lazy">
+        </div>
+    </div>
+
+    <div class="image-row">
+        <div class="image-wrapper" style="flex: 1">
+            <img src="/assets/images/magic/20240404-193022_after.png" loading="lazy">
+        </div>
+        <div class="image-wrapper" style="flex: 1">
+            <img src="/assets/images/magic/20240407-224231_after.png" loading="lazy">
+        </div>
+        <div class="image-wrapper" style="flex: 1">
+            <img src="/assets/images/magic/20240419-203229_after.jpg" loading="lazy">
+        </div>
+    </div>
+    <p class="caption">
+        We use InstructPix2Pix, a conditional diffusion model for image editing from language instructions, to perform one-shot style transfer on photos. Shown above are Studio Ghibli (left) and watercolor (right) style.
+    </p>
+
+    <div class="image-row">
+        <div class="image-wrapper" style="flex: 1">
+            <img src="/assets/images/magic/20240427-181058_before.jpg" loading="lazy">
+        </div>
+        <div class="image-wrapper" style="flex: 1">
+            <img src="/assets/images/magic/20240427-181734_before.jpg" loading="lazy">
+        </div>
+        <div class="image-wrapper" style="flex: 1">
+            <img src="/assets/images/magic/20240428-155705_before.jpg" loading="lazy">
+        </div>
+    </div>
+
+    <div class="image-row">
+        <div class="image-wrapper" style="flex: 1">
+            <img src="/assets/images/magic/20240427-181058_after.jpg" loading="lazy">
+        </div>
+        <div class="image-wrapper" style="flex: 1">
+            <img src="/assets/images/magic/20240427-181734_after.jpg" loading="lazy">
+        </div>
+        <div class="image-wrapper" style="flex: 1">
+            <img src="/assets/images/magic/20240428-155705_after.jpg" loading="lazy">
+        </div>
+    </div>
+    <p class="caption">
+        We deconstruct an image to object-level spatial and semantic information, then reconstruct a new scene with the same arrangement of objects. We use Detic for open-vocabulary object detection, and GLIGEN for grounded generation.
+    </p>
+
+    
+    <p>
+        This project was a collaboration with Eshaan Moorjani, Annie Zhang, Arjun Banerjee, Dhruv Gautam, Erica Liu, Selena Zhao, and Sophie Xie.
+    </p>
+
+
+    <p class="location">
+        Launchpad<br/>
+        Berkeley, CA
+    </p>
+
+</div>
+        </div>
+    </div>
+    
+  </body>
+</html>

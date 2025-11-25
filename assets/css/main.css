@@ -1,0 +1,270 @@
+@import url("https://fonts.googleapis.com/css2?family=Noto+Serif:ital,wght@0,100..900;1,100..900&display=swap");
+body {
+  font-family: helvetica, sans-serif;
+  line-height: 1.2;
+}
+
+p {
+  margin-top: 0px;
+}
+
+.site-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  width: 100%;
+}
+
+.site-content {
+  display: flex;
+  gap: 75px;
+  width: 775px;
+  margin: 200px 40px 100px 40px;
+}
+
+.site-content > div:first-child {
+  flex: 0 0 auto;
+}
+
+.site-content > div:last-child {
+  flex: 1 1 0%;
+}
+
+.michelle-pan {
+  width: 120px;
+  margin-top: -10px;
+}
+
+.sidebar-link-wrapper {
+  margin-top: 10px;
+}
+
+.sidebar-link {
+  text-decoration: none;
+  color: #999;
+}
+
+.sidebar-link:hover {
+  color: #000;
+}
+
+.experience-item {
+  margin-top: 5px;
+}
+
+.entity-link {
+  text-decoration: underline;
+  text-decoration-color: #ccc;
+  text-underline-offset: 2px;
+  color: #000;
+}
+
+.social-wrapper {
+  list-style: none;
+  margin-top: 30px;
+  padding: 0;
+}
+
+.social-link {
+  display: inline-block;
+  text-decoration: none;
+  color: #999;
+}
+
+.social-link:hover {
+  color: #000;
+}
+
+.experience {
+  margin-top: 5px;
+}
+
+.work-feed {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
+
+.snippet-wrapper {
+  margin-bottom: 30px;
+}
+
+.snippet-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.snippet-title {
+  font-weight: 600;
+  text-transform: uppercase;
+  margin: 0px 0px;
+}
+
+.snippet-date {
+  margin: 0px 0px;
+}
+
+.snippet-description {
+  font-style: italic;
+  margin-top: 3px;
+  margin-bottom: 7px;
+}
+
+.snippet-image {
+  width: 100%;
+  filter: grayscale(100%);
+  opacity: 0.9;
+  transition: filter 2s, opacity 2s;
+}
+
+.snippet-image:hover,
+.snippet-image.hover {
+  filter: none;
+  opacity: 1.5;
+  transition: filter 0s, opacity 0s;
+}
+
+.play {
+  font-family: "Noto Serif", serif;
+  font-style: italic;
+  font-size: 24px;
+  color: #bbb;
+  display: inline-block;
+  margin-bottom: 15px;
+  text-decoration: none;
+}
+
+.play-word {
+  font-weight: 800;
+}
+
+.blue-hover:hover {
+  color: #2584ac;
+  text-decoration-color: #2584ac;
+}
+
+.pink-hover:hover {
+  color: #b32076;
+  text-decoration-color: #b32076;
+}
+
+.yellow-hover:hover {
+  color: #dca40c;
+  text-decoration-color: #dca40c;
+}
+
+.purple-hover:hover {
+  color: #7e1aad;
+  text-decoration-color: #7e1aad;
+}
+
+.green-hover:hover {
+  color: #458a0c;
+  text-decoration-color: #458a0c;
+}
+
+.blue-highlight:hover {
+  text-decoration-color: rgba(37, 132, 172, 0.2);
+  background-color: rgba(37, 132, 172, 0.2);
+}
+
+.pink-highlight:hover {
+  text-decoration-color: rgba(179, 32, 118, 0.2);
+  background-color: rgba(179, 32, 118, 0.2);
+}
+
+.yellow-highlight:hover {
+  text-decoration-color: rgba(220, 164, 12, 0.2);
+  background-color: rgba(220, 164, 12, 0.2);
+}
+
+.purple-highlight:hover {
+  text-decoration-color: rgba(126, 26, 173, 0.2);
+  background-color: rgba(126, 26, 173, 0.2);
+}
+
+.green-highlight:hover {
+  text-decoration-color: rgba(69, 138, 12, 0.2);
+  background-color: rgba(69, 138, 12, 0.2);
+}
+
+.sidebar-link:not(:hover), .social-link:not(:hover), .entity-link:not(:hover), .play:not(:hover) {
+  transition: filter 2s, opacity 2s, color 2s, text-decoration 2s, text-decoration-color 2s, background-color 2s;
+}
+
+.caption {
+  margin-top: 10px;
+  font-size: 12px;
+  color: #666;
+  text-align: center;
+}
+
+.tower-row {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: end;
+  flex-wrap: wrap;
+  row-gap: 0px;
+  margin-top: 20px;
+  gap: 20px;
+  width: 100%;
+  max-width: 100%;
+}
+
+.tower-wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  flex: 0 1 auto;
+  min-width: 0;
+  max-width: 100%;
+}
+
+.tower-wrapper img {
+  max-height: 200px;
+  vertical-align: middle;
+}
+
+.tower-wrapper:hover {
+  cursor: pointer;
+}
+
+@media (max-width: 1175px) {
+  .site-content {
+    margin: 17vw 40px 100px 40px;
+  }
+}
+@media (max-width: 700px) {
+  .site-content {
+    flex-direction: column;
+    width: 100%;
+    gap: 30px;
+    margin: 70px 35px 100px 35px;
+  }
+  .sidebar {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 12px;
+  }
+  .sidebar-link-wrapper {
+    text-align: right;
+    margin-top: 0px;
+  }
+  .tower-row {
+    align-items: center;
+    gap: 15px;
+    margin-top: 10px;
+  }
+  .tower-wrapper img {
+    max-height: 200px;
+  }
+}
+
+/*# sourceMappingURL=main.css.map */

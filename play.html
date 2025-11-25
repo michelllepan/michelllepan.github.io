@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="utf-8">
+    <title>michelle pan</title>
+    <link rel="icon" type="image/svg+xml" href="/assets/images/mp.svg">
+    <link rel="stylesheet" href="https://use.typekit.net/omz0idg.css">
+    <link rel="stylesheet" href="/assets/css/main.css">
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-7YN2LJ770T"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+
+        gtag('config', 'G-7YN2LJ770T');
+    </script>
+  </head>
+  <body>
+    <div class="site-wrapper">
+        <div class="site-content">
+            <div class="sidebar">
+    <img src="/assets/images/michelle-pan.svg" alt="michelle pan" class="michelle-pan">
+    <div class="sidebar-link-wrapper">
+        <a class="sidebar-link yellow-hover" href="/">about</a><br>
+        <a class="sidebar-link green-hover" href="/robots">robots</a><br>
+        <a class="sidebar-link blue-hover" href="/artifacts">artifacts</a><br>
+        <a class="sidebar-link pink-hover" href="/play">play</a>
+    </div>
+</div>
+            <div class="play-content">
+    <a class="play yellow-hover" href="https://www.websters1913.com/words/Play" target="_blank">
+        <span class="play-word">play, n.</span>
+        performance on an instrument of music
+    </a>
+    <p>
+        I play the carillon, a keyboard instrument which rings bells often mounted atop a tower.
+        I'm currently an Associate Carillonist at Berkeley's
+        <a href="https://visit.berkeley.edu/campus-attractions/campanile" class="entity-link green-highlight" target="_blank">Campanile</a> and a student carillonist at Stanford's
+        <a href="https://www.hoover.org/library-archives/visit/hoover-tower" class="entity-link purple-highlight" target="_blank">Hoover Tower</a>.
+    </p>
+
+    <p>
+        I've been lucky to play carillons at these towers around the country and world:
+    </p>
+
+    <div class="tower-row">
+        <div class="tower-wrapper" data-audio="/assets/sounds/2.0bell.mp3">
+            <img src="/assets/images/towers/berkeley.svg" loading="lazy">
+            <p class="caption">Berkeley<br/>CA</p>
+        </div>
+        <div class="tower-wrapper" data-audio="/assets/sounds/2.2bell.mp3">
+            <img src="/assets/images/towers/stanford.svg" loading="lazy">
+            <p class="caption">Stanford<br/>CA</p>
+        </div>
+        <div class="tower-wrapper" data-audio="/assets/sounds/2.4bell.mp3">
+            <img src="/assets/images/towers/athens.svg" loading="lazy">
+            <p class="caption">Athens<br/>WV</p>
+        </div>
+        <div class="tower-wrapper" data-audio="/assets/sounds/2.7bell.mp3">
+            <img src="/assets/images/towers/chicago.svg" loading="lazy">
+            <p class="caption">Chicago<br/>IL</p>
+        </div>
+        <div class="tower-wrapper" data-audio="/assets/sounds/2.9bell.mp3">
+            <img src="/assets/images/towers/santa-barbara.svg" loading="lazy">
+            <p class="caption">Santa Barbara<br/>CA</p>
+        </div>
+        <div class="tower-wrapper" data-audio="/assets/sounds/3.0bell.mp3">
+            <img src="/assets/images/towers/san-jose.svg" loading="lazy">
+            <p class="caption">San Jose<br/>CA</p>
+        </div>
+
+        <div class="tower-wrapper" data-audio="/assets/sounds/3.2bell.mp3">
+            <img src="/assets/images/towers/vienna.svg" loading="lazy">
+            <p class="caption">Vienna<br/>Austria</p>
+        </div>
+        <div class="tower-wrapper" data-audio="/assets/sounds/3.4bell.mp3">
+            <img src="/assets/images/towers/toulouse.svg" loading="lazy">
+            <p class="caption">Toulouse<br/>France</p>
+        </div>
+        <div class="tower-wrapper" data-audio="/assets/sounds/3.7bell1.mp3">
+            <img src="/assets/images/towers/villefranche.svg" loading="lazy">
+            <p class="caption">Villefranche-de-Rouergue<br/>France</p>
+        </div>
+    </div>
+
+    <br/><br/>
+
+    <a class="play blue-hover" href="https://www.websters1913.com/words/Play" target="_blank">
+        <span class="play-word">play, n.</span>
+        amusement; sport; frolic; gambols
+    </a>
+    <br/>
+
+    What's life without a little whimsy? I've had fun...
+    <ul class="experience">
+        <li class="experience-item">
+            curating <a href="https://ml-valentines.github.io/" class="entity-link blue-highlight" target="_blank">machine learning pickup lines</a>
+        </li>
+        <li class="experience-item">
+            writing <a href="https://x.com/michelllepan/status/1812348387116867626" class="entity-link yellow-highlight" target="_blank">code you</a> <a href="https://x.com/michelllepan/status/1952561662550237505" class="entity-link green-highlight" target="_blank">can touch</a>
+        </li>
+        <li class="experience-item">
+            collecting <a href="https://michelllepan.mmm.page/" class="entity-link pink-highlight" target="_blank">photos of silly signs</a>
+        </li>
+    </ul>
+    
+</div>
+        </div>
+    </div>
+    
+    <script>
+        (function() {
+            let mouseX = 0;
+            let mouseY = 0;
+            let hoveredImage = null;
+            let centeredImage = null;
+            const snippetImages = document.querySelectorAll('.snippet-image');
+            
+            // Check if we're on mobile (matching the CSS media query at 700px)
+            function isMobile() {
+                return window.innerWidth <= 700;
+            }
+            
+            // Check if an image is centered in the viewport
+            function checkCenteredImages() {
+                if (!isMobile()) {
+                    // On desktop, don't manage centered state
+                    return;
+                }
+                
+                const viewportHeight = window.innerHeight;
+                const viewportCenter = viewportHeight / 2;
+                const threshold = viewportHeight * 0.15; // 15% of viewport height tolerance
+                
+                let newCenteredImage = null;
+                let minDistance = Infinity;
+                
+                snippetImages.forEach(function(image) {
+                    const rect = image.getBoundingClientRect();
+                    const imageCenter = rect.top + (rect.height / 2);
+                    const distanceFromCenter = Math.abs(imageCenter - viewportCenter);
+                    
+                    // Check if image is in viewport and center is close to viewport center
+                    if (rect.top < viewportHeight && rect.bottom > 0 && distanceFromCenter < threshold) {
+                        if (distanceFromCenter < minDistance) {
+                            minDistance = distanceFromCenter;
+                            newCenteredImage = image;
+                        }
+                    }
+                });
+                
+                // Update centered image
+                if (centeredImage !== newCenteredImage) {
+                    // Remove hover from previously centered image (unless it's mouse-hovered)
+                    if (centeredImage && centeredImage !== hoveredImage) {
+                        centeredImage.classList.remove('hover');
+                    }
+                    // Add hover to newly centered image
+                    if (newCenteredImage) {
+                        newCenteredImage.classList.add('hover');
+                    }
+                    centeredImage = newCenteredImage;
+                }
+            }
+            
+            // Track mouse position (for desktop)
+            document.addEventListener('mousemove', function(e) {
+                if (isMobile()) {
+                    // On mobile, don't track mouse for hover
+                    return;
+                }
+                mouseX = e.clientX;
+                mouseY = e.clientY;
+                updateHoverState();
+            });
+            
+            // Update hover state during scroll
+            let scrollTimeout;
+            let rafId = null;
+            window.addEventListener('scroll', function() {
+                clearTimeout(scrollTimeout);
+                
+                if (isMobile()) {
+                    // On mobile, use requestAnimationFrame for smooth centered image detection
+                    if (rafId === null) {
+                        rafId = requestAnimationFrame(function() {
+                            checkCenteredImages();
+                            rafId = null;
+                        });
+                    }
+                } else {
+                    // On desktop, update hover state based on mouse position
+                    updateHoverState();
+                    // Also check after scroll ends
+                    scrollTimeout = setTimeout(updateHoverState, 50);
+                }
+            }, { passive: true });
+            
+            function updateHoverState() {
+                if (isMobile()) {
+                    // On mobile, hover is managed by centered images
+                    return;
+                }
+                
+                // Find element at mouse position
+                const elementAtPoint = document.elementFromPoint(mouseX, mouseY);
+                const imageUnderMouse = elementAtPoint ? elementAtPoint.closest('.snippet-image') : null;
+                
+                // Remove hover from previously hovered image
+                if (hoveredImage && hoveredImage !== imageUnderMouse) {
+                    hoveredImage.classList.remove('hover');
+                    hoveredImage = null;
+                }
+                
+                // Add hover to current image if it exists
+                if (imageUnderMouse) {
+                    imageUnderMouse.classList.add('hover');
+                    hoveredImage = imageUnderMouse;
+                }
+            }
+            
+            // Use Intersection Observer to optimize - only check images that are in viewport
+            if ('IntersectionObserver' in window) {
+                const observer = new IntersectionObserver(function(entries) {
+                    entries.forEach(function(entry) {
+                        // If image leaves viewport, clean up hover state
+                        if (!entry.isIntersecting) {
+                            if (isMobile()) {
+                                // On mobile, if this was the centered image, clear it
+                                if (entry.target === centeredImage) {
+                                    entry.target.classList.remove('hover');
+                                    centeredImage = null;
+                                }
+                            } else {
+                                // On desktop, if this was the hovered image, clear it
+                                if (entry.target === hoveredImage) {
+                                    entry.target.classList.remove('hover');
+                                    hoveredImage = null;
+                                }
+                            }
+                        }
+                    });
+                }, {
+                    root: null,
+                    rootMargin: '0px',
+                    threshold: 0
+                });
+                
+                // Observe all snippet images
+                snippetImages.forEach(function(image) {
+                    observer.observe(image);
+                });
+            }
+            
+            // Clean up hover state on mouse leave (desktop only)
+            document.addEventListener('mouseleave', function() {
+                if (!isMobile() && hoveredImage) {
+                    hoveredImage.classList.remove('hover');
+                    hoveredImage = null;
+                }
+            });
+            
+            // Handle window resize to switch between mobile/desktop modes
+            let resizeTimeout;
+            window.addEventListener('resize', function() {
+                clearTimeout(resizeTimeout);
+                resizeTimeout = setTimeout(function() {
+                    if (isMobile()) {
+                        // Switch to mobile mode - check centered images
+                        checkCenteredImages();
+                        // Clear mouse-based hover
+                        if (hoveredImage) {
+                            hoveredImage.classList.remove('hover');
+                            hoveredImage = null;
+                        }
+                    } else {
+                        // Switch to desktop mode - clear centered image hover
+                        if (centeredImage) {
+                            centeredImage.classList.remove('hover');
+                            centeredImage = null;
+                        }
+                    }
+                }, 100);
+            }, { passive: true });
+            
+            // Initial check for centered images on mobile
+            if (isMobile()) {
+                checkCenteredImages();
+            }
+        })();
+        
+        // Handle audio playback on tower-wrapper click
+        (function() {
+            const towerWrappers = document.querySelectorAll('.tower-wrapper');
+            let audioUnlocked = false;
+            
+            // Unlock audio on first user interaction
+            function unlockAudio() {
+                if (audioUnlocked) return;
+                audioUnlocked = true;
+                
+                // Create a silent audio context to unlock audio on first interaction
+                // This is more efficient than loading an actual audio file
+                try {
+                    const audioContext = new (window.AudioContext || window.webkitAudioContext)();
+                    const oscillator = audioContext.createOscillator();
+                    const gainNode = audioContext.createGain();
+                    gainNode.gain.value = 0;
+                    oscillator.connect(gainNode);
+                    gainNode.connect(audioContext.destination);
+                    oscillator.start();
+                    oscillator.stop(audioContext.currentTime + 0.001);
+                } catch (e) {
+                    // Fallback: silently handle if AudioContext is not supported
+                }
+            }
+            
+            // Listen for user interactions to unlock audio
+            ['click', 'touchstart', 'keydown'].forEach(function(eventType) {
+                document.addEventListener(eventType, unlockAudio, { once: true, passive: true });
+            });
+            
+            // Set up click handlers - sounds will overlap and continue playing
+            towerWrappers.forEach(function(wrapper) {
+                wrapper.addEventListener('click', function() {
+                    const audioSrc = wrapper.getAttribute('data-audio');
+                    if (!audioSrc) return;
+                    
+                    // Unlock audio if not already unlocked
+                    if (!audioUnlocked) {
+                        unlockAudio();
+                    }
+                    
+                    // Create a new audio instance for each play so sounds can overlap
+                    // Audio will load on-demand when play() is called
+                    const newAudio = new Audio();
+                    newAudio.src = audioSrc;
+                    newAudio.volume = 0.2; // Play at 20% volume
+                    
+                    // Add error handling
+                    newAudio.addEventListener('error', function(e) {
+                        console.error('Audio loading error for', audioSrc, e);
+                    });
+                    
+                    // Play this audio - it will continue until it finishes
+                    // The audio will load and play independently, allowing overlaps
+                    newAudio.play().then(function() {
+                        console.log('Audio playing:', audioSrc);
+                    }).catch(function(error) {
+                        console.error('Audio play failed:', error, 'for', audioSrc);
+                        // If it's a loading issue, wait for the audio to be ready
+                        newAudio.addEventListener('canplay', function() {
+                            newAudio.play().catch(function(err) {
+                                console.error('Retry play failed:', err);
+                            });
+                        }, { once: true });
+                        // Trigger load
+                        newAudio.load();
+                    });
+                });
+            });
+        })();
+    </script>
+  </body>
+</html>
