@@ -472,25 +472,36 @@
             // Set up click handlers - sounds will overlap and continue playing
             towerWrappers.forEach(function(wrapper) {
                 wrapper.addEventListener('click', function() {
+                    // Give click the same effect as hover: flash the caption in,
+                    // then let it fade out via the CSS transition. Release it on the
+                    // next frame (once opacity:1 has painted) so the fade runs; no
+                    // need to hold it for the full length of the bell.
+                    wrapper.classList.add('caption-visible');
+                    requestAnimationFrame(function() {
+                        requestAnimationFrame(function() {
+                            wrapper.classList.remove('caption-visible');
+                        });
+                    });
+
                     const audioSrc = wrapper.getAttribute('data-audio');
                     if (!audioSrc) return;
-                    
+
                     // Unlock audio if not already unlocked
                     if (!audioUnlocked) {
                         unlockAudio();
                     }
-                    
+
                     // Create a new audio instance for each play so sounds can overlap
                     // Audio will load on-demand when play() is called
                     const newAudio = new Audio();
                     newAudio.src = audioSrc;
                     newAudio.volume = 0.2; // Play at 20% volume
-                    
+
                     // Add error handling
                     newAudio.addEventListener('error', function(e) {
                         console.error('Audio loading error for', audioSrc, e);
                     });
-                    
+
                     // Play this audio - it will continue until it finishes
                     // The audio will load and play independently, allowing overlaps
                     newAudio.play().then(function() {
